@@ -7,7 +7,7 @@
 <script>
 export default {
   methods: {
-    logout(){
+    logout() {
       // 清空 token
       window.sessionStorage.clear()
       // 跳转到登录页

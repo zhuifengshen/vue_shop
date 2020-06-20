@@ -351,7 +351,7 @@ export default {
         this.$message.success('更新用户信息成功！')
       })
     },
-    // 根据ID删除对于用户信息
+    // 根据ID删除对应用户信息
     async removeUserById(id) {
       const confirmResult = await this.$confirm(
         '此操作将永久删除该用户, 是否继续?',

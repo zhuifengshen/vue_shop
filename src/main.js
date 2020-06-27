@@ -6,17 +6,28 @@ import './plugins/element.js'
 import './assets/css/global.css'
 // 导入字体图标
 import './assets/fonts/iconfont.css'
-// 导入第三方库
+// 导入第三方库树形表格
 import TreeTable from 'vue-table-with-tree-grid'
-
+// 导入第三方库进度条
+import NProgress from 'nprogress'
+// 导入第三方网络库
 import axios from 'axios'
+
 // 配置请求的根路径
 axios.defaults.baseURL = 'https://www.liulongbin.top:8888/api/private/v1/'
 axios.interceptors.request.use(config => {
+  // 开始发起网络请求
+  NProgress.start()
   // console.log(config)
   config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
 })
+axios.interceptors.response.use(config => {
+  // 完成网络请求
+  NProgress.done()
+  return config
+})
+
 Vue.prototype.$http = axios
 
 Vue.config.productionTip = false

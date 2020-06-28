@@ -52,7 +52,7 @@
                   class="input-new-tag"
                   v-if="scope.row.inputVisible"
                   v-model="scope.row.inputValue"
-                  ref="saveTagInput"
+                  ref="tagInputRef"
                   size="small"
                   @keyup.enter.native="handleInputConfirm(scope.row)"
                   @blur="handleInputConfirm(scope.row)"
@@ -112,7 +112,7 @@
                   class="input-new-tag"
                   v-if="scope.row.inputVisible"
                   v-model="scope.row.inputValue"
-                  ref="saveTagInput"
+                  ref="tagInputRef"
                   size="small"
                   @keyup.enter.native="handleInputConfirm(scope.row)"
                   @blur="handleInputConfirm(scope.row)"
@@ -408,7 +408,7 @@ export default {
       // 让文本框自动获得焦点
       // $nextTick 方法的作用：就是当页面上元素被重新渲染之后，才会执行回调函数中的代码
       this.$nextTick(_ => {
-        this.$refs.saveTagInput.$refs.input.focus()
+        this.$refs.tagInputRef.$refs.input.focus()
       })
     },
     // 点击删除按钮，删除对应的参数标签

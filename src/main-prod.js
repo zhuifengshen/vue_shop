@@ -1,15 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import './plugins/element.js'
+// import './plugins/element.js'  // 通过 externals 实现 CDN 加载
 // 导入全局样式表
 import './assets/css/global.css'
 // 导入字体图标
 import './assets/fonts/iconfont.css'
 // 导入第三方库树形表格
 import TreeTable from 'vue-table-with-tree-grid'
-// 导入第三方库进度条
+// 导入 NProgress 包对应的JS和CSS
 import NProgress from 'nprogress'
+// import 'nprogress/nprogress.css'  // 通过 externals 实现 CDN 加载
 // 导入第三方网络库
 import axios from 'axios'
 

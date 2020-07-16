@@ -22,6 +22,7 @@ module.exports = {
       config.plugin('html').tap(args => {
         // 添加参数来判断是否为线上环境 isProd
         args[0].isProd = true
+        args[0].title = '有米自动化系统'
         return args
       })
     })
@@ -33,6 +34,7 @@ module.exports = {
       config.plugin('html').tap(args => {
         // 添加参数 isProd
         args[0].isProd = false
+        args[0].title = '有米自动化系统'
         return args
       })
     })

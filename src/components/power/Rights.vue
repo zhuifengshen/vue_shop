@@ -7,10 +7,10 @@
       <el-breadcrumb-item>权限列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片视图区域 -->
-    <el-card class="box-card">
+    <el-card>
       <!-- 权限列表区域 -->
       <el-table :data="rightsList" border stripe>
-        <el-table-column type="index"></el-table-column>
+        <el-table-column type="index" label="#"></el-table-column>
         <el-table-column label="权限名称" prop="authName"></el-table-column>
         <el-table-column label="路径" prop="path"></el-table-column>
         <el-table-column label="等级" prop="level">
@@ -30,7 +30,7 @@ export default {
   data() {
     return {
       // 权限列表
-      rightsList: []
+      rightsList: [],
     }
   },
   created() {
@@ -45,10 +45,9 @@ export default {
       }
       // console.log(res.data)
       this.rightsList = res.data
-    }
-  }
+    },
+  },
 }
 </script>
 
-<style lang="less" scoped>
-</style>
+<style lang="less" scoped></style>

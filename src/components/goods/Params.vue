@@ -12,10 +12,10 @@
       <el-alert title="注意：只允许为第三级分类设置相关参数！" type="warning" :closable="false" show-icon></el-alert>
       <!-- 选择商品分类区域 -->
       <el-row class="cat_opt">
-        <el-col class="box-card">
+        <el-col>
           <span>选择商品分类：</span>
           <!-- options 用来指定数据源 -->
-          <!-- props 用例指定配置对象 -->
+          <!-- props 用来指定配置对象 -->
           <el-cascader
             v-model="selectedCateKeys"
             :options="catelist"
@@ -58,7 +58,7 @@
               </template>
             </el-table-column>
             <!-- 索引行 -->
-            <el-table-column type="index"></el-table-column>
+            <el-table-column type="index" label="#"></el-table-column>
             <el-table-column label="参数名" prop="attr_name"></el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -103,7 +103,7 @@
               </template>
             </el-table-column>
             <!-- 索引行 -->
-            <el-table-column type="index"></el-table-column>
+            <el-table-column type="index" label="#"></el-table-column>
             <el-table-column label="属性名" prop="attr_name"></el-table-column>
             <el-table-column label="操作">
               <template slot-scope="scope">
@@ -162,7 +162,7 @@ export default {
         // checkStrictly: true,
         value: 'cat_id',
         label: 'cat_name',
-        children: 'children'
+        children: 'children',
       },
       // 级联选择框双向绑定的数组
       selectedCateKeys: [],
@@ -176,11 +176,11 @@ export default {
       addDialogVisible: false,
       // 添加参数的表单数据对象
       addForm: {
-        attr_name: ''
+        attr_name: '',
       },
       // 添加参数的表单的验证规则对象
       addFormRules: {
-        attr_name: [{ required: true, message: '请输入参数名称', trigger: 'blur' }]
+        attr_name: [{ required: true, message: '请输入参数名称', trigger: 'blur' }],
       },
       // 控制编辑参数对话框的显示与隐藏
       editDialogVisible: false,
@@ -188,8 +188,8 @@ export default {
       editForm: {},
       // 添加参数的表单的验证规则对象
       editFormRules: {
-        attr_name: [{ required: true, message: '请输入参数名称', trigger: 'blur' }]
-      }
+        attr_name: [{ required: true, message: '请输入参数名称', trigger: 'blur' }],
+      },
     }
   },
   computed: {
@@ -213,7 +213,7 @@ export default {
         return '动态参数'
       }
       return '静态属性'
-    }
+    },
   },
   created() {
     this.getCateList()
@@ -247,7 +247,7 @@ export default {
       }
       console.log(this.selectedCateKeys)
       const { data: res } = await this.$http.get(`categories/${this.cateId}/attributes`, {
-        params: { sel: this.activeName }
+        params: { sel: this.activeName },
       })
       if (res.meta.status !== 200) {
         return this.$message.error('获取参数列表失败！')
@@ -279,7 +279,7 @@ export default {
         }
         const { data: res } = await this.$http.post(`categories/${this.cateId}/attributes`, {
           attr_name: this.addForm.attr_name,
-          attr_sel: this.activeName
+          attr_sel: this.activeName,
         })
         if (res.meta.status !== 201) {
           return this.$message.error('添加参数失败！')
@@ -293,8 +293,8 @@ export default {
     async showEditDialog(attrId) {
       const { data: res } = await this.$http.get(`categories/${this.cateId}/attributes/${attrId}`, {
         params: {
-          attr_sel: this.activeName
-        }
+          attr_sel: this.activeName,
+        },
       })
       if (res.meta.status !== 200) {
         return this.$message('获取参数信息失败！')
@@ -314,7 +314,7 @@ export default {
         }
         const { data: res } = await this.$http.put(`categories/${this.cateId}/attributes/${this.editForm.attr_id}`, {
           attr_name: this.editForm.attr_name,
-          attr_sel: this.activeName
+          attr_sel: this.activeName,
         })
         if (res.meta.status !== 200) {
           return this.$message.error('修改参数失败！')
@@ -329,7 +329,7 @@ export default {
       const confirmResult = await this.$confirm('此操作将永久删除该参数，是否继续？', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
-        type: 'warning'
+        type: 'warning',
       }).catch(err => err)
       // 如果用户确认删除，则返回值为字符串 confirm
       // 如果用户取消删除，则返回值为字符串 cancel
@@ -377,14 +377,14 @@ export default {
       const { data: res } = await this.$http.put(`categories/${this.cateId}/attributes/${row.attr_id}`, {
         attr_name: row.attr_name,
         attr_sel: row.attr_sel,
-        attr_vals: row.attr_vals.join(',')
+        attr_vals: row.attr_vals.join(','),
       })
       if (res.meta.status !== 200) {
         return this.$message.error('修改标签失败！')
       }
       this.$message.success('修改标签成功！')
-    }
-  }
+    },
+  },
 }
 </script>
 

@@ -7,12 +7,10 @@
       <el-breadcrumb-item>角色列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片视图区域 -->
-    <el-card class="box-card">
+    <el-card>
       <!-- 添加角色按钮区域 -->
       <el-row>
-        <el-button type="primary" @click="addRoleDialogVisible = true"
-          >添加角色</el-button
-        >
+        <el-button type="primary" @click="addRoleDialogVisible = true">添加角色</el-button>
       </el-row>
       <!-- 角色列表区域 -->
       <el-table :data="rolelist" border stripe>
@@ -27,11 +25,7 @@
             >
               <!-- 渲染一级权限 -->
               <el-col :span="5">
-                <el-tag
-                  closable
-                  @close="removeRightById(scope.row, item1.id)"
-                  >{{ item1.authName }}</el-tag
-                >
+                <el-tag closable @close="removeRightById(scope.row, item1.id)">{{ item1.authName }}</el-tag>
                 <i class="el-icon-caret-right"></i>
               </el-col>
               <!-- 渲染二级和三级权限 -->
@@ -44,12 +38,9 @@
                 >
                   <!-- 渲染二级权限 -->
                   <el-col :span="6">
-                    <el-tag
-                      type="success"
-                      closable
-                      @close="removeRightById(scope.row, item2.id)"
-                      >{{ item2.authName }}</el-tag
-                    >
+                    <el-tag type="success" closable @close="removeRightById(scope.row, item2.id)">{{
+                      item2.authName
+                    }}</el-tag>
                     <i class="el-icon-caret-right"></i>
                   </el-col>
                   <!-- 渲染三级权限 -->
@@ -69,30 +60,18 @@
           </template>
         </el-table-column>
         <!-- 索引列 -->
-        <el-table-column type="index"></el-table-column>
+        <el-table-column type="index" label="#"></el-table-column>
         <el-table-column label="角色名称" prop="roleName"></el-table-column>
         <el-table-column label="角色描述" prop="roleDesc"></el-table-column>
         <el-table-column label="操作" width="300px">
           <template slot-scope="scope">
-            <el-button
-              size="mini"
-              type="primary"
-              icon="el-icon-edit"
-              @click="showEditRoleDialog(scope.row.id)"
+            <el-button size="mini" type="primary" icon="el-icon-edit" @click="showEditRoleDialog(scope.row.id)"
               >编辑</el-button
             >
-            <el-button
-              size="mini"
-              type="danger"
-              icon="el-icon-delete"
-              @click="removeRoleById(scope.row.id)"
+            <el-button size="mini" type="danger" icon="el-icon-delete" @click="removeRoleById(scope.row.id)"
               >删除</el-button
             >
-            <el-button
-              size="mini"
-              type="warning"
-              icon="el-icon-setting"
-              @click="showSetRightDialog(scope.row)"
+            <el-button size="mini" type="warning" icon="el-icon-setting" @click="showSetRightDialog(scope.row)"
               >分配权限</el-button
             >
           </template>
@@ -100,12 +79,7 @@
       </el-table>
     </el-card>
     <!-- 分配权限的对话框 -->
-    <el-dialog
-      title="权限分配"
-      :visible.sync="setRightDialogVisible"
-      width="50%"
-      @close="setRightDialogClose"
-    >
+    <el-dialog title="权限分配" :visible.sync="setRightDialogVisible" width="50%" @close="setRightDialogClose">
       <!-- 树形控件 -->
       <el-tree
         :data="rightslist"
@@ -123,19 +97,9 @@
     </el-dialog>
 
     <!-- 添加角色的对话框 -->
-    <el-dialog
-      title="添加角色"
-      :visible.sync="addRoleDialogVisible"
-      width="50%"
-      @close="addRoleDialogClose"
-    >
+    <el-dialog title="添加角色" :visible.sync="addRoleDialogVisible" width="50%" @close="addRoleDialogClose">
       <!-- 内容主体区域 -->
-      <el-form
-        :model="addRoleForm"
-        :rules="addRoleRules"
-        ref="addRoleFormRef"
-        label-width="80px"
-      >
+      <el-form :model="addRoleForm" :rules="addRoleRules" ref="addRoleFormRef" label-width="80px">
         <el-form-item label="角色名称" prop="roleName">
           <el-input v-model="addRoleForm.roleName"></el-input>
         </el-form-item>
@@ -151,19 +115,9 @@
     </el-dialog>
 
     <!-- 修改角色的对话框 -->
-    <el-dialog
-      title="修改角色"
-      :visible.sync="editRoleDialogVisible"
-      width="50%"
-      @close="editRoleDialogClose"
-    >
+    <el-dialog title="修改角色" :visible.sync="editRoleDialogVisible" width="50%" @close="editRoleDialogClose">
       <!-- 内容主体区域 -->
-      <el-form
-        :model="editRoleForm"
-        :rules="editRoleRules"
-        ref="editRoleFormRef"
-        label-width="80px"
-      >
+      <el-form :model="editRoleForm" :rules="editRoleRules" ref="editRoleFormRef" label-width="80px">
         <el-form-item label="角色名称" prop="roleName">
           <el-input v-model="editRoleForm.roleName"></el-input>
         </el-form-item>
@@ -192,7 +146,7 @@ export default {
       // 树形控件的属性绑定对象
       treeProps: {
         label: 'authName',
-        children: 'children'
+        children: 'children',
       },
       // 默认选中节点的 ID 值数组
       defKeys: [],
@@ -203,13 +157,11 @@ export default {
       // 添加角色的表单数据
       addRoleForm: {
         roleName: '',
-        roleDesc: ''
+        roleDesc: '',
       },
       // 添加角色表单的验证规则对象
       addRoleRules: {
-        roleName: [
-          { required: true, message: '请输入角色名称', trigger: 'blur' }
-        ]
+        roleName: [{ required: true, message: '请输入角色名称', trigger: 'blur' }],
       },
       // 控制修改角色信息对话框的显示与隐藏
       editRoleDialogVisible: false,
@@ -217,10 +169,8 @@ export default {
       editRoleForm: {},
       // 被修改角色表单的验证规则对象
       editRoleRules: {
-        roleName: [
-          { required: true, message: '请输入角色名称', trigger: 'blur' }
-        ]
-      }
+        roleName: [{ required: true, message: '请输入角色名称', trigger: 'blur' }],
+      },
     }
   },
   created() {
@@ -239,23 +189,17 @@ export default {
     // 根据 ID 删除角色对应权限
     async removeRightById(role, rightId) {
       // 弹框提示用户是否删除
-      const confirmResult = await this.$confirm(
-        '此操作将永久删除该权限, 是否继续?',
-        '提示',
-        {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }
-      ).catch(err => err)
+      const confirmResult = await this.$confirm('此操作将永久删除该权限, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      }).catch(err => err)
 
       if (confirmResult !== 'confirm') {
         return this.$message.info('取消了删除！')
       }
 
-      const { data: res } = await this.$http.delete(
-        `roles/${role.id}/rights/${rightId}`
-      )
+      const { data: res } = await this.$http.delete(`roles/${role.id}/rights/${rightId}`)
       if (res.meta.status !== 200) {
         return this.$message.error('删除权限失败！')
       }
@@ -296,15 +240,9 @@ export default {
     },
     // 为点击角色分配权限
     async allotRights() {
-      const keys = [
-        ...this.$refs.treeRef.getCheckedKeys(),
-        ...this.$refs.treeRef.getHalfCheckedKeys()
-      ]
+      const keys = [...this.$refs.treeRef.getCheckedKeys(), ...this.$refs.treeRef.getHalfCheckedKeys()]
       const idStr = keys.join(',')
-      const { data: res } = await this.$http.post(
-        `roles/${this.roleId}/rights`,
-        { rids: idStr }
-      )
+      const { data: res } = await this.$http.post(`roles/${this.roleId}/rights`, { rids: idStr })
       if (res.meta.status !== 200) {
         return this.$message.error('分配权限失败！')
       }
@@ -314,15 +252,11 @@ export default {
     },
     // 根据 ID 删除角色信息
     async removeRoleById(id) {
-      const confirmResult = await this.$confirm(
-        '此操作将永久删除该角色，是否继续？',
-        '提示',
-        {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }
-      ).catch(err => err)
+      const confirmResult = await this.$confirm('此操作将永久删除该角色，是否继续？', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning',
+      }).catch(err => err)
       // 如果用户确认删除，则返回值为字符串 confirm
       // 如果用户取消删除，则返回值为字符串 cancel
       if (confirmResult === 'cancel') {
@@ -374,10 +308,7 @@ export default {
           return
         }
         // 表单校验通过，发起修改角色信息的请求
-        const { data: res } = await this.$http.put(
-          'roles/' + this.editRoleForm.roleId,
-          this.editRoleForm
-        )
+        const { data: res } = await this.$http.put('roles/' + this.editRoleForm.roleId, this.editRoleForm)
         if (res.meta.status !== 200) {
           return this.$message.error('更新用户信息失败')
         }
@@ -392,8 +323,8 @@ export default {
     // 监听修改角色对话框的关闭事件
     editRoleDialogClose() {
       this.$refs.editRoleFormRef.resetFields()
-    }
-  }
+    },
+  },
 }
 </script>
 

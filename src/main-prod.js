@@ -13,6 +13,8 @@ import NProgress from 'nprogress'
 // import 'nprogress/nprogress.css'  // 通过 externals 实现 CDN 加载
 // 导入第三方网络库
 import axios from 'axios'
+// 导入富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
 
 // 配置请求的根路径
 axios.defaults.baseURL = 'https://www.liulongbin.top:8888/api/private/v1/'
@@ -34,8 +36,10 @@ Vue.prototype.$http = axios
 Vue.config.productionTip = false
 
 Vue.component('tree-table', TreeTable)
+// 将富文本编辑器注册为全局可用的组件
+Vue.use(VueQuillEditor)
 
 new Vue({
   router,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')

@@ -10,14 +10,11 @@ const Home = () => import(/* webpackChunkName:"Login_Home_Welcome" */ '@/compone
 const Welcome = () => import(/* webpackChunkName:"Login_Home_Welcome" */ '@/components/Welcome.vue')
 
 // import Users from '@/components/user/Users.vue'
-const Users = () =>
-  import(/* webpackChunkName:"Users_Rights_Roles" */ '@/components/user/Users.vue')
+const Users = () => import(/* webpackChunkName:"Users_Rights_Roles" */ '@/components/user/Users.vue')
 // import Rights from '@/components/power/Rights.vue'
-const Rights = () =>
-  import(/* webpackChunkName:"Users_Rights_Roles" */ '@/components/power/Rights.vue')
+const Rights = () => import(/* webpackChunkName:"Users_Rights_Roles" */ '@/components/power/Rights.vue')
 // import Roles from '@/components/power/Roles.vue'
-const Roles = () =>
-  import(/* webpackChunkName:"Users_Rights_Roles" */ '@/components/power/Roles.vue')
+const Roles = () => import(/* webpackChunkName:"Users_Rights_Roles" */ '@/components/power/Roles.vue')
 
 // import Cate from '@/components/goods/Cate.vue'
 const Cate = () => import(/* webpackChunkName:"Cate_Params" */ '@/components/goods/Cate.vue')
@@ -25,7 +22,9 @@ const Cate = () => import(/* webpackChunkName:"Cate_Params" */ '@/components/goo
 const Params = () => import(/* webpackChunkName:"Cate_Params" */ '@/components/goods/Params.vue')
 
 // import GoodsList from '@/components/goods/List.vue'
-const GoodsList = () => import(/* webpackChunkName:"GoodsList" */ '@/components/goods/List.vue')
+const GoodsList = () => import(/* webpackChunkName:"Goods" */ '@/components/goods/List.vue')
+// import Add from '@/components/goods/Add.vue'
+const Add = () => import(/* webpackChunkName:"Goods" */ '@/components/goods/Add.vue')
 
 // import Order from '@/components/order/Order.vue'
 const Order = () => import(/* webpackChunkName:"Order_Report" */ '@/components/order/Order.vue')
@@ -37,11 +36,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/login',
   },
   {
     path: '/login',
-    component: Login
+    component: Login,
   },
   {
     path: '/home',
@@ -50,46 +49,50 @@ const routes = [
     children: [
       {
         path: '/welcome',
-        component: Welcome
+        component: Welcome,
       },
       {
         path: '/users',
-        component: Users
+        component: Users,
       },
       {
         path: '/rights',
-        component: Rights
+        component: Rights,
       },
       {
         path: '/roles',
-        component: Roles
+        component: Roles,
       },
       {
         path: '/categories',
-        component: Cate
+        component: Cate,
       },
       {
         path: '/params',
-        component: Params
+        component: Params,
       },
       {
         path: '/goods',
-        component: GoodsList
+        component: GoodsList,
+      },
+      {
+        path: '/goods/add',
+        component: Add,
       },
       {
         path: '/orders',
-        component: Order
+        component: Order,
       },
       {
         path: '/reports',
-        component: Report
-      }
-    ]
-  }
+        component: Report,
+      },
+    ],
+  },
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
 })
 
 // 挂载路由导航守卫

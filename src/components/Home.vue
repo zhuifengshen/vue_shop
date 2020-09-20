@@ -11,7 +11,7 @@
     <!-- 页面主体区域 -->
     <el-container>
       <!-- 侧边栏 -->
-      <el-aside :width="isCollapse ? '56px' : '200px'">
+      <el-aside :width="isCollapse ? '65px' : '200px'">
         <div class="toggle-button" @click="toggleCollapse">|||</div>
         <!-- 侧边栏菜单区域 -->
         <el-menu
@@ -25,11 +25,7 @@
           :default-active="activePath"
         >
           <!-- 一级菜单 -->
-          <el-submenu
-            v-for="item in menulist"
-            :index="item.id + ''"
-            :key="item.id"
-          >
+          <el-submenu v-for="item in menulist" :index="item.id + ''" :key="item.id">
             <!-- 一级菜单的模板区域 -->
             <template slot="title">
               <!-- 图标 -->
@@ -74,12 +70,12 @@ export default {
         103: 'iconfont icon-tijikongjian',
         101: 'iconfont icon-shangpin',
         102: 'iconfont icon-danju',
-        145: 'iconfont icon-baobiao'
+        145: 'iconfont icon-baobiao',
       },
       // 是否折叠
       isCollapse: false,
       // 被激活的链接地址
-      activePath: ''
+      activePath: '',
     }
   },
   created() {
@@ -107,8 +103,8 @@ export default {
     saveNavState(activePath) {
       window.sessionStorage.setItem('activePath', activePath)
       this.activePath = activePath
-    }
-  }
+    },
+  },
 }
 </script>
 

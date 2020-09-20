@@ -7,7 +7,10 @@ module.exports = {
     // 发布模式
     config.when(process.env.NODE_ENV === 'production', config => {
       // entry找到默认的打包入口，调用clear则是删除默认的打包入口，add添加新的打包入口
-      config.entry('app').clear().add('./src/main-prod.js')
+      config
+        .entry('app')
+        .clear()
+        .add('./src/main-prod.js')
       // 默认依赖项的所有第三方包都会被打包到js/chunk-vendors.******.js文件中，导致该js文件过大，可以通过externals排除这些包
       config.set('externals', {
         vue: 'Vue',
@@ -16,7 +19,7 @@ module.exports = {
         lodash: '_',
         echarts: 'echarts',
         nprogress: 'NProgress',
-        'vue-quill-editor': 'VueQuillEditor'
+        'vue-quill-editor': 'VueQuillEditor',
       })
       // 使用插件定制首页内容
       config.plugin('html').tap(args => {
@@ -29,7 +32,10 @@ module.exports = {
 
     // 开发模式
     config.when(process.env.NODE_ENV === 'development', config => {
-      config.entry('app').clear().add('./src/main-dev.js')
+      config
+        .entry('app')
+        .clear()
+        .add('./src/main-dev.js')
       // 使用插件定制首页内容
       config.plugin('html').tap(args => {
         // 添加参数 isProd
@@ -38,5 +44,5 @@ module.exports = {
         return args
       })
     })
-  }
+  },
 }

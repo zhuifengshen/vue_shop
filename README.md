@@ -1,4 +1,5 @@
 # vue_shop
+电商后台管理系统
 
 ## Project init
 ```
@@ -58,5 +59,4 @@ app.listen(80, () => {
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Have a try
-
 Click to view [电商后台管理系统](http://shop.liulongbin.top/)
